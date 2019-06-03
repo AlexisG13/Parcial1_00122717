@@ -9,18 +9,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_launcher_background"/>
+                android:src="@drawable/bk_court"/>
         <TextView
                 android:id="@+id/Tv_book_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="end"
+                android:gravity="center"
                 android:lines="1"
-                android:padding="8dp"
+                android:padding="25dp"
+                android:paddingTop="60dp"
                 android:text="pasty"
-                android:layout_alignBottom="@id/Iv_book_portada"
+                android:layout_alignTop="@+id/Iv_book_portada"
                 android:textColor="#ffff"
-                android:textSize="25sp"/>
+                android:textSize="28sp"/>
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

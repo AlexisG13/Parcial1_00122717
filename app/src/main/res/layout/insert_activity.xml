@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:context=".Activities.MainActivityInsert"
+            >
+
+<LinearLayout android:layout_width="match_parent" android:layout_height="0dp"
+android:layout_weight="1" android:layout_gravity="center"
+>
+
+    <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginTop="8dp"
+            android:layout_gravity="center"
+    >
+
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="35sp"
+                android:id="@+id/tv_equipo1"
+        />
+
+        <TextView
+                android:id="@+id/ed_puntaje1"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:text="0"
+                android:textSize="50sp"
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        <Button
+                android:id="@+id/bt_team_a_3_p"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:onClick="addThreeTeamA"
+                android:text="@string/points_3" />
+
+        <Button
+                android:id="@+id/bt_team_a_2_p"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:onClick="addTwoTeamA"
+                android:text="@string/points_2" />
+
+        <Button
+                android:id="@+id/bt_team_a_free_throw"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:onClick="addOneTeamA"
+                android:text="@string/point_1" />
+
+    </LinearLayout>
+
+    <View android:layout_width="1dp" android:layout_height="match_parent"
+          android:layout_margin="8dp"
+          android:background="#D8D4D4"
+    />
+
+    <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginTop="8dp"
+            android:layout_gravity="center"
+    >
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="35sp"
+                android:id="@+id/tv_equipo2"
+        />
+        <TextView
+                android:id="@+id/ed_puntaje2"
+                android:gravity="center"
+                android:text="0"
+                android:textStyle="bold"
+                android:textSize="50sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        <Button
+                android:id="@+id/bt_team_b_3_p"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:onClick="addThreeTeamB"
+                android:text="@string/points_3" />
+
+        <Button
+                android:id="@+id/bt_team_b_2_p"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:onClick="addTwoTeamB"
+                android:text="@string/points_2" />
+
+        <Button
+                android:id="@+id/bt_team_b_free_throw"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:onClick="addOneTeamB"
+                android:text="@string/point_1" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
+
+    <Button
+            android:id="@+id/btnInsertarPartido"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Agregar"
+            android:layout_gravity="center"/>
+
+
+</LinearLayout>
+
+

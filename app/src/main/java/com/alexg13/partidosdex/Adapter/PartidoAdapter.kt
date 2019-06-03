@@ -33,8 +33,7 @@ class PartidoAdapter internal  constructor(context: Context, val clickListenerBo
                 .load(book.equipo1)
                 .placeholder(R.drawable.ic_launcher_background)
                 .into(Iv_book_portada)*/
-            Tv_book_name.text = book.ganador
-
+            Tv_book_name.text = book.equipo1+"   VS   "+book.equipo2
             this.setOnClickListener{
                 clickListenerBoton(book)
             }

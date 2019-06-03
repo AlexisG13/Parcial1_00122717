@@ -1,6 +1,7 @@
 package com.alexg13.partidosdex.Fragments
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -21,6 +22,8 @@ class ListFragmentActivity : Fragment(){
 
     private lateinit var matchRepoViewModel: PartidoViewModel
     private lateinit var partidoAdapter : PartidoAdapter
+    var listenerTool : SearchNewPartidoListener? = null
+
 
     companion object {
         fun newInstance(dataset : ArrayList<Partido>): ListFragmentActivity{
@@ -29,22 +32,36 @@ class ListFragmentActivity : Fragment(){
         }
     }
 
+
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.list_fragment,container,false)
-        initRecyclerView(view)
+        initRecyclerView(resources.configuration.orientation,view)
         return view
     }
 
+    interface SearchNewPartidoListener{
+        fun manageLandscapeItemClick(partido: Partido)
+    }
 
-    fun initRecyclerView(container : View){
-        partidoAdapter = PartidoAdapter(requireContext(),{ partido: Partido -> triggerActivity(partido) })
+
+    fun initRecyclerView(orientation:Int,container : View){
+        if(orientation == Configuration.ORIENTATION_PORTRAIT){
+            partidoAdapter = PartidoAdapter(requireContext(),{ partido: Partido -> triggerActivity(partido) })
+        }
+        if(orientation==Configuration.ORIENTATION_LANDSCAPE){
+            partidoAdapter = PartidoAdapter(requireContext(),{ partido: Partido -> listenerTool?.manageLandscapeItemClick(partido)})
+        }
         val recyclerView = container.findViewById<RecyclerView>(R.id.movie_list_rv)
         recyclerView.adapter = partidoAdapter
         recyclerView.layoutManager = LinearLayoutManager(context)
+
         matchRepoViewModel = ViewModelProviders.of(this).get(PartidoViewModel::class.java)
         matchRepoViewModel.allPartidos.observe(this,androidx.lifecycle.Observer { books->
             books?.let{partidoAdapter.setpartidos(it)}
         })
+
+
 
         val btnPartido = container.findViewById<Button>(R.id.btnAgregar)
 
@@ -57,6 +74,11 @@ class ListFragmentActivity : Fragment(){
         matchBundle.putParcelable("partido",partido)
         startActivity(Intent(requireContext(), ViewMatchActivity::class.java).putExtras(matchBundle))
     }
+
+    fun triggerActLand(partido: Partido){
+
+    }
+
 
 
 }

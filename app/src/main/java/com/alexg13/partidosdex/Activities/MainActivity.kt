@@ -1,20 +1,22 @@
 package com.alexg13.partidosdex.Activities
 
 import android.content.Intent
+import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.alexg13.partidosdex.Adapter.PartidoAdapter
 import com.alexg13.partidosdex.Entities.Partido
 import com.alexg13.partidosdex.Fragments.ListFragmentActivity
+import com.alexg13.partidosdex.Fragments.MainContentFragment
 import com.alexg13.partidosdex.R
 import com.alexg13.partidosdex.ViewModel.PartidoViewModel
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(),ListFragmentActivity.SearchNewPartidoListener {
 
+    private lateinit var contentFragment: MainContentFragment
     private lateinit var mainFragment: ListFragmentActivity
-    private lateinit var bookRepoViewModel: PartidoViewModel
-    private lateinit var bookAdapter: PartidoAdapter
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,20 +41,24 @@ class MainActivity : AppCompatActivity() {
         }*/
     }
 
-    fun partidoFavorito(partido: Partido){
-
+    override fun manageLandscapeItemClick(partido: Partido) {
+        contentFragment = MainContentFragment.newInstance(partido)
+        changeFragment(R.id.land_main_cont_fragment,contentFragment)
     }
 
     fun initMainFragment(){
         mainFragment = ListFragmentActivity()
-        changeFragment(R.id.main_fragment,mainFragment)
+        val resource = if(resources.configuration.orientation== Configuration.ORIENTATION_PORTRAIT)
+            R.id.main_fragment
+        else{
+            contentFragment = MainContentFragment.newInstance(Partido(0,"N/A","N/A",0,0,"N/A","N/A"))
+            changeFragment(R.id.land_main_cont_fragment,contentFragment)
+            R.id.land_main_fragment
+        }
+        changeFragment(resource,mainFragment)
     }
 
-    fun triggerActivity(partido: Partido){
-        val matchBundle = Bundle()
-        matchBundle.putParcelable("partido",partido)
-        startActivity(Intent(this, ViewMatchActivity::class.java).putExtras(matchBundle))
-    }
+
 
     private fun changeFragment(id: Int, frag: Fragment){ supportFragmentManager.beginTransaction().replace(id, frag).commit() }
 
